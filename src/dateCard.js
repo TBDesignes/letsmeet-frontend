@@ -6,13 +6,13 @@ import {
   Typography,
   IconButton,
   Stack,
-  Tooltip,
 } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { red, blue } from '@mui/material/colors';
 import { sameDay } from './util/datef';
 import HOLIDAYS from './misc/holidays';
 import WeatherContext from './weatherContext';
+import WeatherState from './weatherState';
 import { weatherAPI } from './util';
 
 function DateCard({
@@ -28,10 +28,7 @@ function DateCard({
     ({ day, month }) => day === date.getDate() && month === date.getMonth(),
   );
 
-  const {
-    icon: weatherIcon,
-    text: weatherText,
-  } = weatherAPI.forecastForDate(weather, date)?.day?.condition || {};
+  const forecast = weatherAPI.forecastForDate(weather, date)?.day?.condition;
 
   return (
     <Card
@@ -52,11 +49,7 @@ function DateCard({
         >
           {`${date.getDate()}`}
         </Typography>
-        {weatherIcon ? (
-          <Tooltip title={weatherText}>
-            <img src={weatherIcon} width="40" height="40" alt="s" />
-          </Tooltip>
-        ) : null}
+        <WeatherState forecast={forecast} />
       </Stack>
       <CardContent>
         <IconButton size="small"><Add /></IconButton>
