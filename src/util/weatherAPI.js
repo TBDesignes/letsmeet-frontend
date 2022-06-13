@@ -22,6 +22,7 @@ export const forecastForDate = (weather, forDate) => {
   if (forecast) {
     const { condition } = forecast.day;
 
+    condition.icon = `/assets/weather/icon/${condition.icon.match(/\d{3}.png/)[0]}`;
     condition.text = WEATHER.find(({ code }) => code === condition.code).day;
   }
 

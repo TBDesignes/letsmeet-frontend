@@ -40,7 +40,6 @@ function DateCard({
     >
       <Stack
         direction="row"
-        // bgcolor={isToday ? 'primary.light' : undefined}
         p={1}
         justifyContent="space-between"
         alignItems="center"
