@@ -1,0 +1,24 @@
+{
+    "extends": [
+        "airbnb"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2022
+    },
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "react/jsx-filename-extension": "off",
+        "no-mixed-operators": "off",
+        "comma-dangle": ["error", "always-multiline"]
+    },
+    "overrides": [
+        {
+          "files": ["webpack.dev.js", "webpack.prod.js", "webpack.common.js"],
+          "rules": {
+            "import/no-extraneous-dependencies": ["off"]
+          }
+        }
+    ]
+}
