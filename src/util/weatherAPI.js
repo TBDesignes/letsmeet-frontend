@@ -2,7 +2,7 @@ import WEATHER from '../misc/weather';
 
 // АХТУНГ!!! Вынести эту штуку на бэкенд, когда он будет
 export const fetchWeather = () => (
-  fetch('http://api.weatherapi.com/v1/forecast.json?key=9d2da628cb00408d8f2133908221206&q=Tyumen&days=3&aqi=no&alerts=no')
+  fetch('https://api.weatherapi.com/v1/forecast.json?key=9d2da628cb00408d8f2133908221206&q=Tyumen&days=3&aqi=no&alerts=no')
     .then((result) => result.json())
 );
 /// КОНЕЦ АХТУНГА!!!
