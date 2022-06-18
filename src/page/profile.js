@@ -10,13 +10,12 @@ import {
 const weatherNotify = () => new Notification('Прогноз погоды обновился');
 
 const testNotify = () => {
-  if (!('Notification' in window)) {
-    // eslint-disable-next-line no-alert
-    alert('Уведомления не поддерживаются');
-  } else if (Notification.permission === 'granted') {
-    weatherNotify();
-  } else if (Notification.permission !== 'denied') {
-    Notification.requestPermission((p) => p === 'granted' && testNotify());
+  if ('Notification' in window) {
+    if (Notification.permission === 'granted') {
+      weatherNotify();
+    } else if (Notification.permission !== 'denied') {
+      Notification.requestPermission(() => testNotify());
+    }
   }
 };
 
