@@ -17,7 +17,7 @@ import DateCard from './dateCard';
 import {
   datef,
   dayTable,
-} from './util';
+} from '../../util';
 
 function CalendarHeader() {
   return (

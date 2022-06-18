@@ -8,13 +8,14 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
+    publicPath: '/',
     filename: '[name].build.js',
     clean: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Meet',
-      template: 'index.html',
+      template: 'src/index.html',
     }),
     new CopyPlugin({
       patterns: [

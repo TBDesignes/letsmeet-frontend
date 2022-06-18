@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import Calendar from './calendar';
-import Header from './header';
-import WeatherContext from './weatherContext';
+import WeatherContext from './component/weatherStatus/weatherContext';
+import CalendarPage from './page/calendar';
+import ProfilePage from './page/profile';
 import { weatherAPI } from './util';
+import Layout from './layout';
+import NotFound from './page/notFound';
 
 const theme = createTheme({
   components: {
@@ -22,7 +29,6 @@ const theme = createTheme({
 });
 
 function Main() {
-  const [viewDate, setViewDate] = useState(new Date());
   const [weather, setWeather] = useState(undefined);
 
   useEffect(() => {
@@ -33,23 +39,23 @@ function Main() {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <WeatherContext.Provider value={weather}>
-        <React.StrictMode>
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <WeatherContext.Provider value={weather}>
           <CssBaseline />
-          <Header />
-          <Calendar
-            forDate={viewDate}
-            onPrevDate={
-              () => setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1))
-            }
-            onNextDate={
-              () => setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1))
-            }
-          />
-        </React.StrictMode>
-      </WeatherContext.Provider>
-    </ThemeProvider>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<CalendarPage />} />
+                <Route path="calendar" element={<CalendarPage />} />
+                <Route path="profile" element={<ProfilePage />} />
+              </Route>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Router>
+        </WeatherContext.Provider>
+      </ThemeProvider>
+    </React.StrictMode>
   );
 }
 

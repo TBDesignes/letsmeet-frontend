@@ -9,11 +9,11 @@ import {
 } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { red, blue } from '@mui/material/colors';
-import { sameDay } from './util/datef';
-import HOLIDAYS from './misc/holidays';
-import WeatherContext from './weatherContext';
-import WeatherState from './weatherState';
-import { weatherAPI } from './util';
+import { sameDay } from '../../util/datef';
+import HOLIDAYS from '../../misc/holidays';
+import WeatherContext from '../weatherStatus/weatherContext';
+import WeatherState from '../weatherStatus';
+import { weatherAPI } from '../../util';
 
 function DateCard({
   date,

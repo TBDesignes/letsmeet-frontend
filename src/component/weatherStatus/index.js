@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BlueTooltip from './blueTooltip';
+import BlueTooltip from '../blueTooltip';
 
 function WeatherState({ forecast }) {
   if (forecast) {
