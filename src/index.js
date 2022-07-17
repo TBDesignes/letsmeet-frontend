@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { ChakraProvider } from '@chakra-ui/react';
+import { Settings } from 'luxon';
 import WeatherContext from './component/weatherStatus/weatherContext';
 import CalendarPage from './page/calendar';
 import ProfilePage from './page/profile';
@@ -13,6 +14,8 @@ import { weatherAPI } from './util';
 import Layout from './layout';
 import NotFound from './page/notFound';
 import AppTheme from './theme';
+
+Settings.defaultLocale = 'ru';
 
 function Main() {
   const [weather, setWeather] = useState();
@@ -32,6 +35,7 @@ function Main() {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<CalendarPage />} />
+                <Route path="calendar" element={<CalendarPage />} />
                 <Route path="calendar" element={<CalendarPage />} />
                 <Route path="profile" element={<ProfilePage />} />
               </Route>

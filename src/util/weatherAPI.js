@@ -12,11 +12,7 @@ export const forecastForDate = (weather, forDate) => {
     return false;
   }
 
-  const day = forDate.getDate();
-  const month = forDate.getMonth() + 1;
-  const year = forDate.getFullYear();
-  const isoDate = `${year}-${month > 9 ? month : '0'.concat(month)}-${day > 9 ? day : '0'.concat(day)}`;
-
+  const isoDate = forDate.toISODate();
   const forecast = weather.forecast.forecastday.find(({ date }) => date === isoDate);
 
   if (forecast) {

@@ -1,28 +1,36 @@
 import { Flex, Heading } from '@chakra-ui/react';
+import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import AppBar from '../component/appBar/appBar';
 import Calendar from '../component/calendar';
+import DatePlans from '../component/datePlans';
 
 function CalendarPage() {
-  const [viewDate, setViewDate] = useState(new Date());
+  const [navDate, setNavDate] = useState(DateTime.now());
+  const [viewDate, setViewDate] = useState(null);
 
   return (
     <>
       <AppBar>
-        <Heading color="app.light" fontSize="xl">Календарь</Heading>
+        <Heading textStyle="appBarHeader">Календарь</Heading>
       </AppBar>
       <Flex
         p="2"
         direction="row"
+        justifyContent="space-between"
       >
         <Calendar
-          forDate={viewDate}
+          forDate={navDate}
           onPrevDate={
-            () => setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1))
+            () => setNavDate(navDate.minus({ month: 1 }))
           }
           onNextDate={
-            () => setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1))
+            () => setNavDate(navDate.plus({ month: 1 }))
           }
+          onDateSelected={setViewDate}
+        />
+        <DatePlans
+          forDate={viewDate}
         />
       </Flex>
     </>

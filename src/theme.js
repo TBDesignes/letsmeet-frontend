@@ -15,6 +15,19 @@ const AppTheme = extendTheme({
       dark: '#353535',
     },
   },
+  textStyles: {
+    appBarHeader: {
+      color: 'app.light',
+      fontSize: '32px',
+    },
+  },
+  components: {
+    Button: {
+      baseStyle: {
+        background: 'app.regular',
+      },
+    },
+  },
 });
 
 export default AppTheme;

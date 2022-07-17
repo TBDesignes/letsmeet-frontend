@@ -6,7 +6,7 @@ function ProfilePage() {
   return (
     <Box>
       <AppBar>
-        <Heading color="app.light" fontSize="xl">Профиль</Heading>
+        <Heading textStyle="appBarHeader">Профиль</Heading>
       </AppBar>
       <Text>{'<Пустота>'}</Text>
     </Box>

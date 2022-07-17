@@ -14,8 +14,8 @@ function AppBarMount({ children }) {
         direction="column"
       >
         <Flex
-          justifyContent="flex-end"
           bg="app.dark"
+          boxShadow="md"
           p="2"
         >
           <div ref={t} />
