@@ -7,10 +7,12 @@ import { AppBarContext } from './appBarMount';
 
 function AppBar({ children }) {
   const appBar = useContext(AppBarContext);
-  const [appBarEl, setAppBarEl] = useState(null);
+  const [appBarEl, setAppBarEl] = useState(appBar.current);
 
   useEffect(() => {
-    setAppBarEl(appBar.current);
+    if (appBarEl !== appBar.current) {
+      setAppBarEl(appBar.current);
+    }
   });
 
   return appBarEl
