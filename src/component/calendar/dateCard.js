@@ -1,14 +1,9 @@
+import {
+  Box, Heading, IconButton, Stack,
+} from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Card,
-  CardContent,
-  Typography,
-  IconButton,
-  Stack,
-} from '@mui/material';
-import { Add } from '@mui/icons-material';
-import { red, blue } from '@mui/material/colors';
+import { IoAddOutline } from 'react-icons/io5/';
 import { sameDay } from '../../util/datef';
 import HOLIDAYS from '../../misc/holidays';
 import WeatherContext from '../weatherStatus/weatherContext';
@@ -31,30 +26,36 @@ function DateCard({
   const forecast = weatherAPI.forecastForDate(weather, date)?.day?.condition;
 
   return (
-    <Card
-      sx={{ opacity: isCurrentMonth ? 1 : 0.5, border: isToday && `solid 4px ${blue[500]}` }}
-      variant="outlined"
+    <Box
+      opacity={isCurrentMonth ? 1 : 0.5}
+      w="160px"
+      h="100px"
+      p="2"
+      boxShadow="md"
+      bg="white"
+      borderLeft={isToday ? '4px' : '0'}
+      borderLeftRadius="2px"
+      borderColor="app.regular"
     >
       <Stack
         direction="row"
-        p={1}
+        p="1"
         justifyContent="space-between"
+        minH="48px"
         alignItems="center"
       >
-        <Typography
-          variant="h5"
-          sx={{
-            color: ((isWeekend || holiday) && red[500]),
-          }}
+        <Heading
+          size="md"
+          color={((isWeekend || holiday) && 'red.500')}
         >
           {`${date.getDate()}`}
-        </Typography>
+        </Heading>
         <WeatherState forecast={forecast} />
       </Stack>
-      <CardContent>
-        <IconButton size="small"><Add /></IconButton>
-      </CardContent>
-    </Card>
+      <div>
+        <IconButton rounded="full" size="xs"><IoAddOutline /></IconButton>
+      </div>
+    </Box>
   );
 }
 

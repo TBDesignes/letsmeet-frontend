@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BlueTooltip from '../blueTooltip';
+import { Tooltip } from '@chakra-ui/react';
 
 function WeatherState({ forecast }) {
   if (forecast) {
     return (
-      <BlueTooltip title={forecast.text}>
-        <img src={forecast.icon} width="40" height="40" alt={forecast.text} />
-      </BlueTooltip>
+      <Tooltip label={forecast.text}>
+        <img src={forecast.icon} width="40" height="40" alt="Прогноз" />
+      </Tooltip>
     );
   }
 

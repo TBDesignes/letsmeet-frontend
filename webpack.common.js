@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].build.js',
+    filename: '[name].build-[fullhash].js',
     clean: true,
   },
   plugins: [
@@ -26,7 +26,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.m?jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',

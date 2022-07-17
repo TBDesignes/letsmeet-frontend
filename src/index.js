@@ -5,31 +5,17 @@ import {
   Route,
 } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
+import { ChakraProvider } from '@chakra-ui/react';
 import WeatherContext from './component/weatherStatus/weatherContext';
 import CalendarPage from './page/calendar';
 import ProfilePage from './page/profile';
 import { weatherAPI } from './util';
 import Layout from './layout';
 import NotFound from './page/notFound';
-
-const theme = createTheme({
-  components: {
-    MuiCardContent: {
-      styleOverrides: {
-        root: {
-          '&:last-child': {
-            padding: 8,
-          },
-        },
-      },
-    },
-  },
-});
+import AppTheme from './theme';
 
 function Main() {
-  const [weather, setWeather] = useState(undefined);
+  const [weather, setWeather] = useState();
 
   useEffect(() => {
     if (weather === undefined) {
@@ -40,9 +26,8 @@ function Main() {
 
   return (
     <React.StrictMode>
-      <ThemeProvider theme={theme}>
+      <ChakraProvider theme={AppTheme} resetCSS>
         <WeatherContext.Provider value={weather}>
-          <CssBaseline />
           <Router>
             <Routes>
               <Route path="/" element={<Layout />}>
@@ -54,11 +39,12 @@ function Main() {
             </Routes>
           </Router>
         </WeatherContext.Provider>
-      </ThemeProvider>
+      </ChakraProvider>
     </React.StrictMode>
   );
 }
 
 const domContainer = document.querySelector('#reactRoot');
 const root = createRoot(domContainer);
+
 root.render(<Main />);
