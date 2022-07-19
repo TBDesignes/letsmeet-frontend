@@ -1,4 +1,4 @@
-const WEATHER = [
+const WEATHER_DESCRIPTIONS = [
   {
     code: 1000,
     icon: 113,
@@ -241,4 +241,4 @@ const WEATHER = [
   },
 ];
 
-export default WEATHER;
+export default WEATHER_DESCRIPTIONS;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,30 +7,22 @@ import {
 import { createRoot } from 'react-dom/client';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Settings } from 'luxon';
-import WeatherContext from './component/weatherStatus/weatherContext';
 import CalendarPage from './page/calendar';
 import ProfilePage from './page/profile';
-import { weatherAPI } from './util';
 import Layout from './layout';
 import NotFound from './page/notFound';
 import AppTheme from './theme';
+import { WeatherStore, WeatherContext } from './component/weatherContext';
 
 Settings.defaultLocale = 'ru';
 
+const weatherStore = new WeatherStore();
+
 function Main() {
-  const [weather, setWeather] = useState();
-
-  useEffect(() => {
-    if (weather === undefined) {
-      weatherAPI.fetchWeather().then(setWeather);
-      setWeather(null);
-    }
-  });
-
   return (
     <React.StrictMode>
       <ChakraProvider theme={AppTheme} resetCSS>
-        <WeatherContext.Provider value={weather}>
+        <WeatherContext.Provider value={weatherStore}>
           <Router>
             <Routes>
               <Route path="/" element={<Layout />}>

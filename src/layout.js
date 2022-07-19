@@ -6,7 +6,6 @@ import {
   IoBookmarksOutline,
   IoChatbubbleEllipsesOutline,
 } from 'react-icons/io5';
-import { Box } from '@chakra-ui/react';
 import AppBarMount from './component/appBar/appBarMount';
 import IconLink from './component/iconLink';
 import Sidebar from './component/sidebar';
@@ -23,13 +22,7 @@ function Layout() {
         </>
         )}
       >
-        <Box
-          bg="app.light"
-          w="100%"
-          h="100%"
-        >
-          <Outlet />
-        </Box>
+        <Outlet />
       </Sidebar>
     </AppBarMount>
   );

@@ -15,6 +15,7 @@ function Calendar({
   onPrevDate,
   onNextDate,
   onDateSelected,
+  selectedDate,
 }) {
   return (
     <Paper>
@@ -42,6 +43,7 @@ function Calendar({
               date={date}
               referenceDate={forDate}
               onClick={onDateSelected}
+              isSelected={selectedDate?.hasSame(date, 'day')}
             />
           ))
         }
@@ -55,6 +57,11 @@ Calendar.propTypes = {
   onPrevDate: PropTypes.func.isRequired,
   onNextDate: PropTypes.func.isRequired,
   onDateSelected: PropTypes.func.isRequired,
+  selectedDate: PropTypes.instanceOf(DateTime),
+};
+
+Calendar.defaultProps = {
+  selectedDate: null,
 };
 
 export default Calendar;

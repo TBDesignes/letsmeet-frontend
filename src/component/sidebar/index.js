@@ -21,6 +21,7 @@ function Sidebar({ children, items }) {
       <Box
         overflow="auto"
         w="full"
+        bg="app.light"
       >
         {children}
       </Box>

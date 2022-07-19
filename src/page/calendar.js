@@ -21,6 +21,7 @@ function CalendarPage() {
       >
         <Calendar
           forDate={navDate}
+          selectedDate={viewDate}
           onPrevDate={
             () => setNavDate(navDate.minus({ month: 1 }))
           }
@@ -30,7 +31,7 @@ function CalendarPage() {
           onDateSelected={setViewDate}
         />
         <DatePlans
-          forDate={viewDate}
+          date={viewDate}
         />
       </Flex>
     </>

@@ -2,19 +2,21 @@ import {
   Box, Heading, Stack,
 } from '@chakra-ui/react';
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { bool } from 'prop-types';
 import { DateTime } from 'luxon';
+import { observer } from 'mobx-react-lite';
 import HOLIDAYS from '../../misc/holidays';
-import WeatherContext from '../weatherStatus/weatherContext';
-import WeatherState from '../weatherStatus';
-import { weatherAPI } from '../../util';
+import { WeatherContext } from '../weatherContext';
+import WeatherStatus from '../weatherStatus';
 
 function DateCard({
   date,
   referenceDate,
   onClick,
+  isSelected,
 }) {
   const weather = useContext(WeatherContext);
+  const forecast = weather.forecastForDate(date)?.day.condition;
   const currentDate = DateTime.now();
   const isToday = currentDate.hasSame(date, 'day');
   const isCurrentMonth = referenceDate.month === date.month;
@@ -23,10 +25,9 @@ function DateCard({
     ({ day, month }) => day === date.day && month === date.day,
   );
 
-  const forecast = weatherAPI.forecastForDate(weather, date)?.day?.condition;
-
   return (
     <Box
+      cursor="pointer"
       opacity={isCurrentMonth ? 1 : 0.5}
       w="160px"
       h="100px"
@@ -35,8 +36,8 @@ function DateCard({
       borderRadius="sm"
       bg="white"
       borderWidth="4px"
-      borderColor="white"
-      borderLeftColor={isToday ? 'app.regular' : 'white'}
+      borderColor={isSelected ? 'app.regular' : 'app.white'}
+      borderLeftColor={isToday || isSelected ? 'app.regular' : 'white'}
       transition="all 0.1s ease-in"
       _hover={{
         borderColor: 'app.regular',
@@ -60,7 +61,7 @@ function DateCard({
         >
           {`${date.day}`}
         </Heading>
-        <WeatherState forecast={forecast} />
+        <WeatherStatus forecast={forecast} />
       </Stack>
     </Box>
   );
@@ -70,6 +71,11 @@ DateCard.propTypes = {
   date: PropTypes.instanceOf(DateTime).isRequired,
   referenceDate: PropTypes.instanceOf(DateTime).isRequired,
   onClick: PropTypes.func.isRequired,
+  isSelected: bool,
 };
 
-export default DateCard;
+DateCard.defaultProps = {
+  isSelected: false,
+};
+
+export default observer(DateCard);

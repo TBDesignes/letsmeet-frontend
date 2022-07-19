@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from '@chakra-ui/react';
 
-function WeatherState({ forecast }) {
+function WeatherStatus({ forecast }) {
   if (forecast) {
     return (
       <Tooltip label={forecast.text}>
@@ -14,11 +14,11 @@ function WeatherState({ forecast }) {
   return null;
 }
 
-WeatherState.propTypes = {
+WeatherStatus.propTypes = {
   forecast: PropTypes.objectOf({
     text: PropTypes.string,
     icon: PropTypes.string,
   }).isRequired,
 };
 
-export default WeatherState;
+export default WeatherStatus;

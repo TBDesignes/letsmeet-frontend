@@ -2,8 +2,9 @@
     "extends": [
         "airbnb"
     ],
+    "parser": "@babel/eslint-parser",
     "parserOptions": {
-        "ecmaVersion": 2022
+        "ecmaVersion": "latest"
     },
     "env": {
         "browser": true
@@ -11,7 +12,8 @@
     "rules": {
         "react/jsx-filename-extension": "off",
         "no-mixed-operators": "off",
-        "comma-dangle": ["error", "always-multiline"]
+        "comma-dangle": ["error", "always-multiline"],
+        "no-param-reassign": "off"
     },
     "overrides": [
         {

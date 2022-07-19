@@ -1,27 +1,41 @@
 import React from 'react';
+import { Heading } from '@chakra-ui/react';
 import { DateTime } from 'luxon';
 import PropTypes from 'prop-types';
 import Paper from '../paper';
+import DateDetails from './dateDetails';
 
-function DatePlans({ forDate }) {
+function DatePlans({ date }) {
   return (
     <Paper
       width="420px"
       height="100%"
     >
+      <Heading
+        as="h3"
+        size="md"
+        textAlign="center"
+        color="app.accent"
+        fontWeight="bold"
+        mb={date ? '4' : undefined}
+      >
+        {
+          date
+            ? date.toFormat('DDD')
+            : 'Выберите дату'
+        }
+      </Heading>
       {
-        forDate ? (
-          <div>{forDate.toFormat('DDD')}</div>
-        ) : (
-          <div>Выберите день</div>
-        )
+        date
+          ? <DateDetails date={date} />
+          : null
       }
     </Paper>
   );
 }
 
 DatePlans.propTypes = {
-  forDate: PropTypes.instanceOf(DateTime).isRequired,
+  date: PropTypes.instanceOf(DateTime).isRequired,
 };
 
 export default DatePlans;
