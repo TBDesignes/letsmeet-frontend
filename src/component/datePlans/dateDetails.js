@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import {
-  Accordion, Box, Button, Center, Flex, Text,
+  Accordion, Box, Button, Center, Flex, Heading, Text,
 } from '@chakra-ui/react';
 import { IoAddOutline } from 'react-icons/io5';
 import { DateTime } from 'luxon';
@@ -27,28 +27,39 @@ function DateDetails({ date }) {
 
   return (
     <Box>
-      {forecast
-        ? (
-          <Flex
-            justifyContent="space-between"
-            alignItems="center"
-            gap="4"
-            mb="2"
-            bg="app.accent"
-            rounded="4"
-            p="1"
-            color="app.white"
-            px="4"
-            maxW="250px"
-            mx="auto"
-          >
-            <Text>{formatWind(forecast.maxwind_kph)}</Text>
-            <Text>{`${formatTemperature(forecast.mintemp_c)} … ${formatTemperature(forecast.maxtemp_c)}`}</Text>
-            <WeatherStatus forecast={forecast.condition} />
-          </Flex>
-        )
-        : null}
-      <Accordion>
+      <Flex
+        alignItems="center"
+        justifyContent="space-between"
+        mb="2"
+        py="2"
+      >
+        <Heading
+          as="h4"
+          fontSize="2xl"
+          ml="4"
+        >
+          {date.toFormat('d MMMM')}
+        </Heading>
+        {forecast
+          ? (
+            <Flex
+              justifyContent="space-between"
+              alignItems="center"
+              gap="4"
+              bg="app.accent"
+              rounded="4"
+              px="2"
+              py="1"
+              color="app.white"
+            >
+              <Text>{formatWind(forecast.maxwind_kph)}</Text>
+              <Text>{`${formatTemperature(forecast.mintemp_c)} … ${formatTemperature(forecast.maxtemp_c)}`}</Text>
+              <WeatherStatus forecast={forecast.condition} />
+            </Flex>
+          )
+          : null}
+      </Flex>
+      <Accordion defaultIndex={[0]}>
         <Plan
           title="Прогулка в парке"
           description="С мороженым и арбузом"

@@ -11,20 +11,20 @@ function DatePlans({ date }) {
       width="420px"
       height="100%"
     >
-      <Heading
-        as="h3"
-        size="md"
-        textAlign="center"
-        color="app.accent"
-        fontWeight="bold"
-        mb={date ? '4' : undefined}
-      >
-        {
-          date
-            ? date.toFormat('DDD')
-            : 'Выберите дату'
-        }
-      </Heading>
+      {date
+        ? null
+        : (
+          <Heading
+            as="h3"
+            size="md"
+            textAlign="center"
+            color="app.accent"
+            fontWeight="bold"
+            mb={date ? '4' : undefined}
+          >
+            Выберите дату
+          </Heading>
+        )}
       {
         date
           ? <DateDetails date={date} />

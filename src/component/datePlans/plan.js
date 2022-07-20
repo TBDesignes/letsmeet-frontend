@@ -25,7 +25,7 @@ function Plan({
           >
             {title}
           </Heading>
-          <Box ml="2">
+          <Box ml="2" color="app.accent">
             {date.toLocaleString(DateTime.TIME_24_SIMPLE)}
           </Box>
         </Flex>
